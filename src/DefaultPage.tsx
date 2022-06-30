@@ -8,14 +8,12 @@
 //----- Global ------
 import * as React from 'react';
 import { PureComponent } from 'react';
-
 import { Button } from 'tinper-bee';
-
-import 'tinper-bee/assets/tinper-bee.css';
-
-import './style/App.css';
 import { ReactBpmnViewer } from 'aip-bpmn';
 import Service from './api/service';
+
+import 'tinper-bee/assets/tinper-bee.css';
+import './style/App.css';
 
 /**
  * 页面模板

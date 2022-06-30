@@ -8,15 +8,12 @@
 //----- Global ------
 import * as React from 'react';
 import { PureComponent } from 'react';
-
 import { Button } from 'tinper-bee';
+import { ReactBpmnDesigner, IFormDefinition, IFormFieldSettingsResult } from 'aip-bpmn';
+import Service from './api/service';
 
 import 'tinper-bee/assets/tinper-bee.css';
-
 import './style/App.css';
-import { ReactBpmnDesigner}  from 'aip-bpmn';
-import Service from './api/service';
-import { IFormDefinition, IFormFieldSettingsResult } from 'aip-bpmn';
 
 interface DesignerPageState {
   key?: string;
