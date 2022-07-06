@@ -5,8 +5,8 @@
  * Sunny
  ****************************************************/
 
+import { IFormFieldSettingsResult } from 'aip-bpmn';
 import { request } from 'aip-module';
-import { IFormFieldSettingsResult } from '../bpmn/ais-biz/FormEngineTypes';
 import servUrl from './pathService';
 
 const bpmnXML = `<?xml version="1.0" encoding="UTF-8"?>
@@ -543,14 +543,26 @@ const bpmnXML2: string = `
 
 const formDefDemo = { "items": [{ "fieldName": "fr_index", "fieldType": "string", "fieldLabel": "ID", "fieldWidth": 64, "fieldDefaultValue": "", "fieldRequired": false, "fieldOrder": 0, "fieldOptions": "", "fieldVisible": false, "fieldControl": "string", "fieldGroup": "", "fieldControlProps": "", "relationId": "" }, { "fieldName": "fr_name", "fieldType": "string", "fieldLabel": "名称", "fieldWidth": 32, "fieldDefaultValue": "名称", "fieldRequired": true, "fieldOrder": 1, "fieldOptions": "", "fieldVisible": true, "fieldControl": "string", "fieldGroup": "", "fieldControlProps": "", "relationId": "" }, { "fieldName": "fr_age", "fieldType": "number", "fieldLabel": "年龄", "fieldWidth": 4, "fieldDefaultValue": "24", "fieldRequired": false, "fieldOrder": 2, "fieldOptions": "", "fieldVisible": true, "fieldControl": "number", "fieldGroup": "", "fieldControlProps": "", "relationId": "" }, { "fieldName": "fr_year", "fieldType": "number", "fieldLabel": "开始年度", "fieldWidth": 4, "fieldDefaultValue": "2022", "fieldRequired": false, "fieldOrder": 3, "fieldOptions": "", "fieldVisible": true, "fieldControl": "year", "fieldGroup": "", "fieldControlProps": "{\"yearmode\":\"both\",\"count\":5}", "relationId": "" }, { "fieldName": "aud_begin", "fieldType": "string", "fieldLabel": "开始日期", "fieldWidth": 16, "fieldDefaultValue": "", "fieldRequired": false, "fieldOrder": 4, "fieldOptions": "", "fieldVisible": true, "fieldControl": "datetime", "fieldGroup": "", "fieldControlProps": "", "relationId": "" }, { "fieldName": "aud_end", "fieldType": "string", "fieldLabel": "结束日期", "fieldWidth": 16, "fieldDefaultValue": "", "fieldRequired": false, "fieldOrder": 5, "fieldOptions": "", "fieldVisible": true, "fieldControl": "datetime", "fieldGroup": "", "fieldControlProps": "", "relationId": "" }, { "fieldName": "aud_status", "fieldType": "string", "fieldLabel": "审计状态", "fieldWidth": 16, "fieldDefaultValue": "", "fieldRequired": false, "fieldOrder": 6, "fieldOptions": "", "fieldVisible": true, "fieldControl": "select", "fieldGroup": "", "fieldControlProps": "{\"itemsJsonStr\":\"[\\n  {\\n    \\\"label\\\": \\\"下拉选项1\\\",\\n    \\\"value\\\": \\\"1\\\"\\n  },\\n  {\\n    \\\"label\\\": \\\"下拉选项2\\\",\\n    \\\"value\\\": \\\"2\\\"\\n  },\\n  {\\n    \\\"label\\\": \\\"下拉选项3\\\",\\n    \\\"value\\\": \\\"3\\\"\\n  }\\n]\",\"multipleselect\":true,\"multipleSelect\":true,\"allowClear\":false,\"showSearch\":false}", "relationId": "" }, { "fieldName": "fn_unset", "fieldType": "string", "fieldLabel": "未命名", "fieldWidth": 16, "fieldDefaultValue": "", "fieldRequired": false, "fieldOrder": 7, "fieldOptions": "", "fieldVisible": true, "fieldControl": "string", "fieldGroup": "", "fieldControlProps": "", "relationId": "" }, { "fieldName": "fn_unset", "fieldType": "string", "fieldLabel": "未命名", "fieldWidth": 16, "fieldDefaultValue": "", "fieldRequired": false, "fieldOrder": 8, "fieldOptions": "", "fieldVisible": true, "fieldControl": "string", "fieldGroup": "", "fieldControlProps": "", "relationId": "" }, { "fieldName": "fn_unset", "fieldType": "string", "fieldLabel": "", "fieldWidth": 16, "fieldDefaultValue": "", "fieldRequired": false, "fieldOrder": 9, "fieldOptions": "", "fieldVisible": true, "fieldControl": "sublist", "fieldGroup": "子表", "fieldControlProps": "{\"queryid\":\"111\",\"relationid\":\"222\"}", "relationId": "" }] };
 
+/**
+ * processType?: string;
+   processClass?: string;
+   fields?: IFormFields;
+ */
 const formSettingDemo: IFormFieldSettingsResult =
 {
-  processType: "据用户指定",
-  fields: {
-    Activity_1jpb72w: {
+  "StartEvent_1": {
+    processClass: "com.yonyouaud.ais.Start",
+  },
+  "Activity_1jpb72w": {
+    processType: "据用户指定",
+    processClass: "com.yonyouaud.ais.Activity",
+    fields: {
       fr_name: "readonly",
       fn_unset: "hidden"
     }
+  },
+  "Event_03x59y4": {
+    processClass: "com.yonyouaud.ais.End",
   }
 };
 
@@ -561,7 +573,7 @@ const testXML: string = `
     <bpmn2:startEvent id="StartEvent_1">
       <bpmn2:outgoing>Flow_0gwzj0k</bpmn2:outgoing>
     </bpmn2:startEvent>
-    <bpmn2:task id="Activity_1jpb72w">
+    <bpmn2:task id="Activity_1jpb72w" name="领导审批">
       <bpmn2:incoming>Flow_0gwzj0k</bpmn2:incoming>
       <bpmn2:outgoing>Flow_1rxcts7</bpmn2:outgoing>
     </bpmn2:task>
