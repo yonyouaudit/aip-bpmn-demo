@@ -48,6 +48,12 @@
     "ts-pnp": "1.1.6",
     "url-loader": "2.3.0"
   },
+  "crdaignore": {
+    "packages": {
+      "moment": [],
+      "react-dev-utils": []
+    }
+  },
   "scripts": {
     "start": "node --max_old_space_size=2048 scripts/start.js",
     "build": "node --max_old_space_size=4096 scripts/build.js",
